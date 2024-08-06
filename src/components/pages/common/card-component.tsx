@@ -8,6 +8,7 @@ import {
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import CountdownButton from "./count-down";
+import { formatNumber } from "@/lib/utils";
 type Props = {
     name: string;
     description: string;
@@ -41,8 +42,8 @@ const CardComponent = (props: Props) => {
           <CountdownButton endTiming={props.endTimer} />
         )
         }
-        <Button className="px-1 py-1 bg-[#ffffff75] text-[#464646] rounded-full absolute right-6">
-            {props.views} views
+        <Button className="px-1 py-1 bg-[#ffffff75] text-[#464646] rounded-xl absolute right-6">
+            {formatNumber(props.views)} views
         </Button>
       </CardHeader>
       <CardContent className="flex flex-row justify-between">

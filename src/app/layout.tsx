@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
-import { Dosis, Inter, Maven_Pro, Roboto_Mono, Titillium_Web } from "next/font/google";
+import {
+  Dosis,
+  Inter,
+  Maven_Pro,
+  Roboto_Mono,
+  Titillium_Web,
+} from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/provider/themeprovider";
+import Web3ModalProvider from "@/lib/provider/web3connector";
 
 const robotoMono = Maven_Pro({ subsets: ["latin"] });
 
@@ -17,18 +24,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      
-        <body className={robotoMono.className}>
-        <ThemeProvider
-         enableSystem={false}
-        attribute="class"
-        defaultTheme="light"
-        disableTransitionOnChange
-      >
-          {children}
-          
-      </ThemeProvider>
-          </body>
+      <body className={robotoMono.className}>
+        <Web3ModalProvider>
+          <ThemeProvider
+            enableSystem={false}
+            attribute="class"
+            defaultTheme="light"
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </Web3ModalProvider>
+      </body>
     </html>
   );
 }

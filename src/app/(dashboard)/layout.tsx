@@ -1,5 +1,6 @@
 // import SideBar from "@/components/";
 import SideBar from "@/components/global/SideBar";
+import IdPage from "@/components/pages/market-page/id-page";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -14,6 +15,7 @@ const layout = async (props: Props) => {
     <SideBar/>
     <div className="w-full min-h-screen overflow-y-auto flex flex-col ">
       {props.children}
+      {/* <IdPage/> */}
     </div>
   </div>
   )

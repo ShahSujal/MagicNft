@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/carousel";
 import test from "node:test";
 import CardComponent from "../common/card-component";
+import Link from "next/link";
 const MarketPlace = () => {
   /*
     creating dummy data to test the carousel
@@ -76,6 +77,20 @@ const MarketPlace = () => {
     category: "Recent",
     likes: 300,
   },
+  {
+    name: "Cartoon",
+    description: "This recently minted NFT showcases the latest trends in digital art. Its fresh and innovative design makes it a standout piece in any collection.",
+    price: 300,
+    image:
+      "https://images.unsplash.com/photo-1604076850742-4c7221f3101b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    symbol: "ETH",
+    views: 3000,
+    owner: "0x1234567890",
+    id: "0x1234567890",
+    category: "Cartoon",
+    likes: 300,
+    endTimer: new Date(Date.now() + 9 * 24 * 60 * 60 * 1000)
+  },
 ];
   return (
     <main className=" bg-[#c9d2e7] dark:bg-stone-900 h-screen w-full relative ">
@@ -132,12 +147,16 @@ const MarketPlace = () => {
             <br /> various extraordinary NFT's
           </h1>
           <div className=" space-x-4">
-            <Button className="px-1 py-1 bg-[#ffffff75] text-[#464646] rounded-3xl w-36 mt-4">
+          <Link href="/create">
+          <Button className="px-1 py-1 bg-[#ffffff75] text-[#464646] rounded-3xl w-36 mt-4">
               Create{" "}
             </Button>
+          </Link>
+          <Link href="/collections">
             <Button className="px-1 py-1 bg-[#ffffff33] text-[#000000] rounded-3xl w-36 mt-4">
               Discover{" "}
             </Button>
+          </Link>
           </div>
         </div>
       </div>

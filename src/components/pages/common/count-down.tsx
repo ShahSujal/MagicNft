@@ -34,7 +34,7 @@ const CountdownButton: React.FC<endtimeProps> = ({ endTiming }) => {
   };
 
   return (
-    <div className="absolute bottom-6 left-8">
+    <div className="absolute bottom-6 left-6">
       <div className="px-1  bg-[#ffffff75] flex justify-center items-center w-36 rounded-sm text-[#000000] ">
         {timeLeft !== null ? formatTimeLeft(timeLeft) + " left" : 'Loading...'}
       </div>
