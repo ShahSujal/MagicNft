@@ -7,13 +7,13 @@ import { SIDE_BAR_MENU } from "@/lib/constants/menu";
 import MenuItem from "./sidebar/menu-item";
 import { Switch } from "../ui/switch";
 import { useTheme } from "next-themes";
+import { userDetails } from "@/actions/auth";
 
 const SideBar = () => {
   const expand = useExpandState((state) => state.expand);
   const updateExpandState = useExpandState((state) => state.updateExpandState);
   const { theme, setTheme } = useTheme();
-  console.log(theme);
-  
+ 
   return (
     <div className="w-[300px] h-screen flex items-center justify-between flex-col bg-[#f3f3f569] dark:bg-neutral-950  ">
       <div className="w-full flex items-center flex-col">

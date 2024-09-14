@@ -1,4 +1,5 @@
 // import SideBar from "@/components/";
+import { userDetails } from "@/actions/auth";
 import SideBar from "@/components/global/SideBar";
 import IdPage from "@/components/pages/market-page/id-page";
 import { redirect } from "next/navigation";
@@ -9,13 +10,14 @@ type Props = {
 };
 
 const layout = async (props: Props) => {
-
+  // const user = await userDetails()
+  // console.log(user);
+  
   return (
     <div className="flex h-screen w-full bg-[#c9d2e7]">
     <SideBar/>
     <div className="w-full min-h-screen overflow-y-auto flex flex-col ">
       {props.children}
-      {/* <IdPage/> */}
     </div>
   </div>
   )

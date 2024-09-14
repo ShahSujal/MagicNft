@@ -13,78 +13,58 @@ export enum OrderType {
     INACTIVE = "INACTIVE"
   }
   
-  interface User {
+  type User = {
+    id: string;
+    name: string;
+    email: string | null;
+    twitter: string | null;
     walletAddress: string;
-    // Add other User fields as needed
-  }
+    points: number;
+    role: string;
+    createdAt: Date;
+    updatedAt: Date;
+  };
   
   type View = {
     id: string;
     userId: string;
     nftId: string;
     createdAt: Date;
-  }
+    user: User;
+  };
   
   type Like = {
     id: string;
     userId: string;
     nftId: string;
     createdAt: Date;
-  }
+    user: User;
+  };
   
-  type Participated ={
-    id: string;
-    userId: string;
-    points: number;
-    nftId: string;
-    accuracy: number;
-    createdAt: Date;
-    rewardStatus: string;
-  }
-  
-  type Task = {
-    id: string;
-    nftId: string;
-    prompt: string;
-  }
-  
-  interface AuctionBid {
-    id: string;
-    userId: string;
-    nftId: string;
-    amount: number;
-    createdAt: Date;
-  }
-  
-  interface Transaction {
-    id: string;
-    // Add other Transaction fields as needed
-  }
-  
-  export type TNftType = {
+  export type NftExtendedType = {
     id: string;
     creatorId: string;
-    user: User;
     image: string;
     title: string;
     description: string;
-    shortDescription?: string;
-    orderType: OrderType;
-    priceInEth: number;
-    type: NftType;
+    shortDescription: string | null;
+    orderType: string;
+    PriceInEth: number;
+    type: string;
     views: View[];
     likes: Like[];
     isBid: boolean;
-    bidEndTime?: Date;
+    BidEndTime: Date | null;
     category: string[];
-    rewardWinners: Participated[];
-    rewardEndDate?: Date;
-    rewardPoints?: number;
-    rewardForceCancelled?: boolean;
-    rewardTasks: Task[];
-    auctionBids: AuctionBid[];
-    transactions: Transaction[];
-    status: Status;
+    rewardWinners: any[]; // Assuming Particpated type is defined elsewhere
+    rewardEndDate: Date | null;
+    rewardPoints: number | null;
+    rewardForceCancelled: boolean | null;
+    rewardTasks: any[]; // Assuming Tasks type is defined elsewhere
+    AuctionBids: any[]; // Assuming AuctionBids type is defined elsewhere
+    transactions: any[]; // Assuming Transactions type is defined elsewhere
+    status: string;
     createdAt: Date;
     updatedAt: Date;
-  }
+    user: User;
+  };

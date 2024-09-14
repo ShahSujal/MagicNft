@@ -7,10 +7,18 @@ import {
   Titillium_Web,
 } from "next/font/google";
 import "./globals.css";
+import localFont from "next/font/local";
 import { ThemeProvider } from "@/lib/provider/themeprovider";
 import Web3ModalProvider from "@/lib/provider/web3connector";
-
-const robotoMono = Maven_Pro({ subsets: ["latin"] });
+import { Toaster } from "@/components/ui/toaster";
+// import { Toaster } from "sonnar";
+// import {local}
+// import "../../public/PPRightGothic-TightMedium.otf";
+const gothic_sans = localFont({
+  src: "../../public/PPRightGothic-WideBlack.otf",
+  variable: "--font-gothic-sans",
+});
+// const robotoMono = Maven_Pro({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={robotoMono.className}>
+      <body className={gothic_sans.variable}>
         <Web3ModalProvider>
           <ThemeProvider
             enableSystem={false}
@@ -32,6 +40,7 @@ export default function RootLayout({
             defaultTheme="light"
             disableTransitionOnChange
           >
+            <Toaster/>
             {children}
           </ThemeProvider>
         </Web3ModalProvider>

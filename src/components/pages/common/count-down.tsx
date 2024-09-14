@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button"; // Adjust the import according 
 
 type endtimeProps = {
     endTiming: Date,
+    width?: string,
+    height?: string,
 }
 
-const CountdownButton: React.FC<endtimeProps> = ({ endTiming }) => {
+const CountdownButton: React.FC<endtimeProps> = ({ endTiming,width,height }) => {
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const CountdownButton: React.FC<endtimeProps> = ({ endTiming }) => {
 
   return (
     <div className="absolute bottom-6 left-6">
-      <div className="px-1  bg-[#ffffff75] flex justify-center items-center w-36 rounded-sm text-[#000000] ">
+      <div className={`px-1  bg-[#ffffff75] flex justify-center items-center${width?`w-${width}`: "w-36"} rounded-sm text-[#000000] `}>
         {timeLeft !== null ? formatTimeLeft(timeLeft) + " left" : 'Loading...'}
       </div>
     </div>

@@ -45,7 +45,7 @@ model User {
   views         Views[]
   auctions      AuctionBids[]
   likes         Likes[]
-  twitter       String
+  twitter       String?
   transactions  Transactions[]
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
@@ -111,7 +111,10 @@ model Nfts {
   image                String
   title                String
   description          String
+  prompt               String?
   shortDescription     String?
+  tokenId              String
+  chainId              Int
   orderType            orderType      @default(PUBLIC)
   PriceInEth           Float
   type                 NftType
