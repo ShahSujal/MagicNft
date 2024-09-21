@@ -1,24 +1,44 @@
 import type { Metadata } from "next";
-import {
-  Dosis,
-  Inter,
-  Maven_Pro,
-  Roboto_Mono,
-  Titillium_Web,
-} from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/lib/provider/themeprovider";
 import Web3ModalProvider from "@/lib/provider/web3connector";
 import { Toaster } from "@/components/ui/toaster";
-// import { Toaster } from "sonnar";
-// import {local}
-// import "../../public/PPRightGothic-TightMedium.otf";
-const gothic_sans = localFont({
-  src: "../../public/PPRightGothic-WideBlack.otf",
-  variable: "--font-gothic-sans",
+
+const paps = localFont({
+  src: [
+    {
+      path: "../../public/fonts/papsmedium.otf",
+      weight: "500",
+    },
+    {
+      path: "../../public/fonts/papslight.otf",
+      weight: "200",
+    },
+    {
+      path: "../../public/fonts/papsbold.otf",
+      weight: "700",
+    },
+  ],
+  variable: "--font-paps",
 });
-// const robotoMono = Maven_Pro({ subsets: ["latin"] });
+const fragment = localFont({
+  src: [
+    {
+      path: "../../public/fonts/fragmentmedium.otf",
+      weight: "500",
+    },
+    {
+      path: "../../public/fonts/fragmentlight.otf",
+      weight: "200",
+    },
+    {
+      path: "../../public/fonts/fragmentbold.otf",
+      weight: "700",
+    },
+  ],
+  variable: "--font-fragment",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -32,7 +52,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={gothic_sans.variable}>
+      <body className={`${paps.variable} ${fragment.variable}`}>
         <Web3ModalProvider>
           <ThemeProvider
             enableSystem={false}

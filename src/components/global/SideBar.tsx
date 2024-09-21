@@ -27,7 +27,7 @@ const SideBar = () => {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar> */}
         <StarsIcon width={20} height={20}/>
-        <h1 className=" text-lg text-gray-800 font-semibold font-gothic2 ml-2">Magic Nft</h1>
+        <h1 className=" text-lg text-gray-800 font-semibold font-paps ml-2">Magic Nft</h1>
 
       </div>
         <div className="flex flex-col w-full p-4">

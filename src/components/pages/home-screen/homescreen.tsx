@@ -31,7 +31,7 @@ const HomeScreen = () => {
       <div className=" absolute left-2/3 top-1/2 bg-gradient-to-tr from-[#faeefb] to-[#f7e9ea] blur-[80px] w-44 h-44"></div>
       <div className="flex justify-center items-center w-full h-screen">
         <div className="flex flex-col z-20 justify-center items-center">
-          <h1 className="text-[95px] text-[#ffffff]  font-gothic2">NFT MarketPlace</h1>
+          <h1 className="text-[95px] text-[#ffffff]  font-fragment">NFT MarketPlace</h1>
         </div>
       </div>
 

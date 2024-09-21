@@ -53,8 +53,9 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
-      fontFamily:{
-      "gothic2": ["var(--font-gothic-sans)"],
+      fontFamily: {
+        paps: ["var(--font-paps)"],
+        fragment: ["var(--font-fragment)"],
       },
       borderRadius: {
         lg: "var(--radius)",
