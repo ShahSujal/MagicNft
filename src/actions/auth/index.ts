@@ -1,8 +1,8 @@
 "use server";
 
-import { client } from "@/lib/prisma";
-import { config } from "@/lib/provider/configprovider";
-import { NftType } from "@prisma/client";
+// import { client } from "@/lib/prisma";
+// import { config } from "@/lib/provider/configprovider";
+// import { NftType } from "@prisma/client";
 
 // import { getAccount } from "@wagmi/core";
 // import { readFileSync } from "fs";
