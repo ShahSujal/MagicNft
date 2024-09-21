@@ -22,7 +22,7 @@ import CardComponent from "../common/card-component";
 import Link from "next/link";
 // import { useWeb3Modal } from "@web3modal/wagmi/react";
 // import { useAccount } from "wagmi";
-import { createBidNft, createPlatformNft, getPlatFormNftData, registerUser } from "@/hooks/user/useDetails";
+// import { createBidNft, createPlatformNft, getPlatFormNftData, registerUser } from "@/hooks/user/useDetails";
 import { Nfts } from "@prisma/client";
 import IdPage from "./id-page";
 import { NftExtendedType } from "@/types/common";
@@ -113,7 +113,7 @@ const MarketPlace = () => {
   const cartoon = ()=>{
 
   }
- const {nftData} = getPlatFormNftData()
+//  const {nftData} = getPlatFormNftData()
  
  const [activeSelect, setActiveSelect] = useState<NftExtendedType | null>()
  
@@ -169,7 +169,7 @@ const MarketPlace = () => {
         <div className=" w-1/2 h-full flex justify-center items-center flex-col z-10">
           <h1 className=" text-[34px] font-medium text-gray-50 text-center  ">
             Discover Collect and Sell
-            <br /> various extraordinary NFT's
+            <br /> various extraordinary NFT&apos;s
           </h1>
           <div className=" space-x-4">
             <Link href="/create">
@@ -199,18 +199,18 @@ const MarketPlace = () => {
         }}
         className="w-full relative px-2"
       >
-        <CarouselContent className=" space-x-8">
+        {/* <CarouselContent className=" space-x-8">
           {nftData.map((item:NftExtendedType) => (
             <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/4 ">
               <CardComponent nft={item} setActive={setActiveSelect}  />
             </CarouselItem>
           ))}
-        </CarouselContent>
+        </CarouselContent> */}
         <CarouselPrevious className=" absolute left-3 top-1/2" />
         <CarouselNext className=" absolute right-3 top-1/2" />
       </Carousel>
 
-      <div className=" my-10">
+      {/* <div className=" my-10">
       <Button
           variant={"default"}
           className="px-1 py-1 bg-[#ffffff75] text-[#464646] rounded-3xl w-36 mt-4"
@@ -239,7 +239,7 @@ const MarketPlace = () => {
        >
           Create{" "}
         </Button>
-      </div>
+      </div> */}
 
       <h1 className="text-[20px] text-zinc-700 font-semibold mt-4 ml-4">
         Recent{" "}

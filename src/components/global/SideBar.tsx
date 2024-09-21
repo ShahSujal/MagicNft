@@ -7,7 +7,8 @@ import { SIDE_BAR_MENU } from "@/lib/constants/menu";
 import MenuItem from "./sidebar/menu-item";
 import { Switch } from "../ui/switch";
 import { useTheme } from "next-themes";
-import { userDetails } from "@/actions/auth";
+// import { userDetails } from "@/actions/auth";
+import { StarsIcon } from "lucide-react";
 
 const SideBar = () => {
   const expand = useExpandState((state) => state.expand);
@@ -18,14 +19,15 @@ const SideBar = () => {
     <div className="w-[300px] h-screen flex items-center justify-between flex-col bg-[#f3f3f569] dark:bg-neutral-950  ">
       <div className="w-full flex items-center flex-col">
       <div className=" flex items-center w-full p-2  flex-row">
-      <Avatar
+      {/* <Avatar
           className={"w-[25px] h-[25px]"
           }
         >
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <h1 className=" text-xl text-gray-500 ml-2">Hello World</h1>
+        </Avatar> */}
+        <StarsIcon width={20} height={20}/>
+        <h1 className=" text-lg text-gray-800 font-semibold font-gothic2 ml-2">Magic Nft</h1>
 
       </div>
         <div className="flex flex-col w-full p-4">

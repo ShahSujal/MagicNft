@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import { EyeOpenIcon, PlusCircledIcon } from "@radix-ui/react-icons";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount } from "wagmi";
-import { getPlatFormNftData } from "@/hooks/user/useDetails";
+// import { getPlatFormNftData } from "@/hooks/user/useDetails";
 import { NftExtendedType } from "@/types/common";
 import CardComponent from "../common/card-component";
 import IdPage from "../market-page/id-page";
@@ -39,7 +39,7 @@ const Collections = () => {
   ];
   const { open } = useWeb3Modal();
   const { address } = useAccount();
-  const {nftData} = getPlatFormNftData()
+  // const {nftData} = getPlatFormNftData()
  
   return (
     <main className=" bg-[#c9d2e7] dark:bg-stone-900 h-screen w-full relative ">
@@ -96,9 +96,9 @@ const Collections = () => {
       </div>
 
       <div className=" w-full min-h-screen flex flex-row space-y-4 flex-wrap ">
-        {nftData.map((item:NftExtendedType) => (
+        {/* {nftData.map((item:NftExtendedType) => (
          <CardComponent nft={item} setActive={setActiveSelect}/>
-        ))}
+        ))} */}
       </div>
 
       {

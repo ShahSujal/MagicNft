@@ -8,11 +8,11 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { LoadDataType } from "./page";
-import {
-  createPlatformNft,
-  getKey,
-  uploadToNftStorage,
-} from "@/hooks/user/useDetails";
+// import {
+//   createPlatformNft,
+//   getKey,
+//   uploadToNftStorage,
+// } from "@/hooks/user/useDetails";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -61,14 +61,14 @@ const Step3 = ({ setLoadData, loadData, images }: Step1Props) => {
     if (!imageFile) {
       return;
     }
-    const createNft = await createPlatformNft({
-      walletAddress: "",
-      name: "",
-      description: "",
-      shortDescription: "",
-      imageFile: imageFile,
-      type: loadData.type,
-    });
+    // const createNft = await createPlatformNft({
+    //   walletAddress: "",
+    //   name: "",
+    //   description: "",
+    //   shortDescription: "",
+    //   imageFile: imageFile,
+    //   type: loadData.type,
+    // });
 
     toast({
       title: "You submitted the following values:",
@@ -87,8 +87,8 @@ const Step3 = ({ setLoadData, loadData, images }: Step1Props) => {
     }
   };
   const handleUpload = async () => {
-    const key = await getKey();
-    console.log(key);
+    // const key = await getKey();
+    // console.log(key);
   };
   return (
     <div className="w-full h-screen ">
@@ -111,10 +111,10 @@ const Step3 = ({ setLoadData, loadData, images }: Step1Props) => {
                 >
                   <FormField
                     control={form.control}
-                    name="dob"
+                    name="file"
                     render={({ field }) => (
                       <FormItem className="flex flex-col">
-                        <FormLabel>Bid's Ending date</FormLabel>
+                        <FormLabel>Bid&apos;s Ending date</FormLabel>
 
                         <FormControl>
                           <div className="flex items-center justify-center w-full">

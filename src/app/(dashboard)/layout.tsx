@@ -1,5 +1,5 @@
 // import SideBar from "@/components/";
-import { userDetails } from "@/actions/auth";
+// import { userDetails } from "@/actions/auth";
 import SideBar from "@/components/global/SideBar";
 import IdPage from "@/components/pages/market-page/id-page";
 import { redirect } from "next/navigation";

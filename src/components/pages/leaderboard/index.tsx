@@ -31,7 +31,7 @@ const Leaderboard = (props: Props) => {
     <main className="overflow-y-auto w-full flex flex-col h-screen ">
         
         <h1 className="text-[34px] text-zinc-100 font-semibold mt-4 ml-4">Leaderboard</h1>
-        <h1 className="text-[20px] text-zinc-700 font-semibold mt-4 ml-4">Top Nft's</h1>
+        <h1 className="text-[20px] text-zinc-700 font-semibold mt-4 ml-4">Top Nft&apos;s</h1>
 
 <Carousel
       opts={{
@@ -67,7 +67,7 @@ const Leaderboard = (props: Props) => {
                     <CardTitle>Top Creator </CardTitle>
                   
                     <CardDescription>
-                     Rank of the top NFT's
+                     Rank of the top NFT&apos;s
                      
                     </CardDescription>
                   </CardHeader>

@@ -15,7 +15,7 @@ const dummyNftData = {
   status:Status.ACTIVE,
 };
 export const createNft = async ({}) => {
-  client.nfts.create({
-    data: dummyNftData,
-  });
+  // client.nfts.create({
+  //   data: dummyNftData,
+  // });
 };
