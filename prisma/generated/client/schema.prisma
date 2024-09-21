@@ -1,0 +1,148 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum NftType {
+  Platform_generated
+  Ai_generated
+}
+
+enum TransactionType {
+  BUY
+  SELL
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+  FORCE_DEACTIVATE
+}
+
+enum rewardStatus {
+  DISTRIBUTED
+  ACTIVE
+}
+
+model User {
+  id            String         @id @default(cuid())
+  email         String?
+  name          String?
+  points        Int            @default(0)
+  walletAddress String         @unique
+  rewards       Particpated[]
+  nfts          Nfts[]
+  views         Views[]
+  auctions      AuctionBids[]
+  likes         Likes[]
+  twitter       String?
+  transactions  Transactions[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  role          Role           @default(USER)
+}
+
+enum orderType {
+  PRIVATE
+  PUBLIC
+}
+
+model Views {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [walletAddress])
+  userId    String
+  nfts      Nfts     @relation(fields: [nftId], references: [id])
+  nftId     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model Likes {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [walletAddress])
+  userId    String
+  nfts      Nfts     @relation(fields: [nftId], references: [id])
+  nftId     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model Tasks {
+  id     String @id @default(cuid())
+  nfts   Nfts   @relation(fields: [nftId], references: [id])
+  nftId  String @unique
+  prompt String
+}
+
+model Particpated {
+  id           String       @id @default(cuid())
+  user         User         @relation(fields: [creatorId], references: [walletAddress])
+  creatorId    String
+  points       Int
+  nft          Nfts         @relation(fields: [nftId], references: [id])
+  nftId        String
+  accuracy     Int
+  createdAt    DateTime     @default(now())
+  rewardStatus rewardStatus @default(ACTIVE)
+}
+
+model AuctionBids {
+  id          String   @id @default(cuid())
+  user        User     @relation(fields: [auctionerId], references: [walletAddress])
+  auctionerId String
+  nft         Nfts     @relation(fields: [nftId], references: [id])
+  nftId       String
+  amount      Float
+  createdAt   DateTime @default(now())
+}
+
+model Nfts {
+  id                   String         @id @default(cuid())
+  user                 User           @relation(fields: [creatorId], references: [walletAddress])
+  creatorId            String
+  image                String
+  title                String
+  description          String
+  prompt               String?
+  shortDescription     String?
+  tokenId              String
+  chainId              Int
+  orderType            orderType      @default(PUBLIC)
+  PriceInEth           Float
+  type                 NftType
+  views                Views[]
+  likes                Likes[]
+  isBid                Boolean
+  BidEndTime           DateTime?
+  category             String[]
+  rewardWinners        Particpated[]
+  rewardEndDate        DateTime?
+  rewardPoints         Int?
+  rewardForceCancelled Boolean?
+  rewardTasks          Tasks[]
+  AuctionBids          AuctionBids[]
+  transactions         Transactions[]
+  status               Status         @default(ACTIVE)
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+}
+
+model Transactions {
+  id          String          @id @default(cuid())
+  user        User            @relation(fields: [userId], references: [walletAddress])
+  userId      String
+  type        TransactionType
+  AmountInEth Float
+  nft         Nfts            @relation(fields: [nftId], references: [id])
+  nftId       String
+  createdAt   DateTime        @default(now())
+}
