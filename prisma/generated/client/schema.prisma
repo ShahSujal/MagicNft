@@ -118,7 +118,7 @@ model Nfts {
   chainId              Int
   orderType            orderType      @default(PUBLIC)
   PriceInEth           Float
-  type                 NftType
+  type                 NftType        @default(Platform_generated)
   views                Views[]
   likes                Likes[]
   isBid                Boolean

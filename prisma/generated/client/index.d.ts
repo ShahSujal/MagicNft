@@ -11159,7 +11159,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -11190,7 +11190,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -11280,7 +11280,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -13235,7 +13235,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -13264,7 +13264,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -13615,7 +13615,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -13645,7 +13645,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -13831,7 +13831,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -13861,7 +13861,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -14008,7 +14008,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -14038,7 +14038,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -14179,7 +14179,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -14209,7 +14209,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -14395,7 +14395,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -14425,7 +14425,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -14942,7 +14942,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -14972,7 +14972,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]
@@ -15128,7 +15128,7 @@ export namespace Prisma {
     chainId: number
     orderType?: $Enums.orderType
     PriceInEth: number
-    type: $Enums.NftType
+    type?: $Enums.NftType
     isBid: boolean
     BidEndTime?: Date | string | null
     category?: NftsCreatecategoryInput | string[]

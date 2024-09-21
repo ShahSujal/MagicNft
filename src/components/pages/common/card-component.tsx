@@ -9,7 +9,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import CountdownButton from "./count-down";
 import { formatNumber } from "@/lib/utils";
-import { NftType, Nfts, User } from "@prisma/client";
+// import { NftType, Nfts, User } from "@prisma/client";
 import { NftExtendedType } from "@/types/common";
 type Props = {
   nft: NftExtendedType;
