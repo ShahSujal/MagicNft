@@ -7,12 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
-import { LoadDataType } from "./page";
-// import {
-//   createPlatformNft,
-//   getKey,
-//   uploadToNftStorage,
-// } from "@/hooks/user/useDetails";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -36,45 +31,59 @@ import {
 } from "@/components/ui/popover";
 import { toast } from "@/components/ui/use-toast";
 import { NftType } from "@prisma/client";
+import { createPlatformNft } from "@/lib/contract/nft/create";
+import { TLoadDataType } from "@/types/common";
+import { useAccount } from "wagmi";
 const FormSchema = z.object({
   file: z.instanceof(File).refine((file) => file.type === "image/jpg", {
     message: "Only PDF files are allowed.",
   }),
 });
 interface Step1Props {
-  setLoadData: React.Dispatch<React.SetStateAction<LoadDataType>>;
-  loadData: LoadDataType;
+  setLoadData: React.Dispatch<React.SetStateAction<TLoadDataType>>;
+  loadData: TLoadDataType;
   images: string[];
 }
 const Step3 = ({ setLoadData, loadData, images }: Step1Props) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | undefined>(undefined);
 
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-  });
+  // const form = useForm<z.infer<typeof FormSchema>>({
+  //   resolver: zodResolver(FormSchema),
+  // });
+  const { address } = useAccount();
 
-  console.log(loadData);
-  
-
-  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-    if (!imageFile) {
+  const onSubmit = async () => {
+    if (!imageFile || !imageUrl) {
       return;
     }
-    // const createNft = await createPlatformNft({
-    //   walletAddress: "",
-    //   name: "",
-    //   description: "",
-    //   shortDescription: "",
-    //   imageFile: imageFile,
-    //   type: loadData.type,
-    // });
+    if (!address) {
+      return;
+    }
+    const createNft = await createPlatformNft({
+      title: loadData.title,
+      description: loadData.description,
+      imageFile: imageFile,
+      image: imageUrl,
+      PriceInEth: loadData.PriceInEth,
+      orderType: loadData.orderType,
+      category: loadData.category,
+      isBid: loadData.isBid,
+      BidEndTime: loadData.BidEndTime,
+      rewardEndDate: loadData.rewardEndDate,
+      rewardPoints: loadData.rewardPoints,
+      images: images,
+      shortDescription: loadData.shortDescription,
+      step: 3,
+      type: loadData.type,
+      address: address as string,
+    });
 
     toast({
       title: "You submitted the following values:",
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+          {/* <code className="text-white">{JSON.stringify(data, null, 2)}</code> */}
         </pre>
       ),
     });
@@ -104,82 +113,56 @@ const Step3 = ({ setLoadData, loadData, images }: Step1Props) => {
                   Enter your email below to login to your account
                 </p>
               </div>
-              <Form {...form}>
-                <form
-                  onSubmit={form.handleSubmit(onSubmit)}
-                  className="space-y-8"
+
+              <div className="flex items-center justify-center w-full">
+                <label
+                  htmlFor="dropzone-file"
+                  className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100  "
                 >
-                  <FormField
-                    control={form.control}
-                    name="file"
-                    render={({ field }) => (
-                      <FormItem className="flex flex-col">
-                        <FormLabel>Bid&apos;s Ending date</FormLabel>
-
-                        <FormControl>
-                          <div className="flex items-center justify-center w-full">
-                            <label
-                              htmlFor="dropzone-file"
-                              className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100  "
-                            >
-                              <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                <svg
-                                  className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
-                                  aria-hidden="true"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  fill="none"
-                                  viewBox="0 0 20 16"
-                                >
-                                  <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    stroke-width="2"
-                                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                                  />
-                                </svg>
-                                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                                  <span className="font-semibold">
-                                    Click to upload
-                                  </span>{" "}
-                                  or drag and drop
-                                </p>
-                                <p className="text-xs text-gray-500 dark:text-gray-400">
-                                  SVG, PNG, JPG or GIF (MAX. 800x400px)
-                                </p>
-                              </div>
-                              <input
-                                id="dropzone-file"
-                                type="file"
-                                className="hidden"
-                                onChange={handleFileChange}
-                              />
-                            </label>
-                          </div>
-                        </FormControl>
-
-                        <FormDescription>
-                          The date when the bid will end. The bid will be closed
-                          after this date.
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                    <svg
+                      className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 20 16"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        stroke-width="2"
+                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                      />
+                    </svg>
+                    <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                      <span className="font-semibold">Click to upload</span> or
+                      drag and drop
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      SVG, PNG, JPG or GIF (MAX. 800x400px)
+                    </p>
+                  </div>
+                  <input
+                    id="dropzone-file"
+                    type="file"
+                    className="hidden"
+                    onChange={handleFileChange}
                   />
+                </label>
+              </div>
 
-                  <Button type="submit" variant="outline" className="w-full">
-                    Submit
-                  </Button>
-                  <Button
-                    className="w-full"
-                    onClick={() => {
-                      setLoadData({ ...loadData, step: 1 });
-                    }}
-                  >
-                    Back
-                  </Button>
-                </form>
-              </Form>
+              <Button type="submit" variant="outline" className="w-full" onClick={()=>onSubmit()}>
+                Submit
+              </Button>
+              <Button
+                className="w-full"
+                onClick={() => {
+                  setLoadData({ ...loadData, step: 1 });
+                }}
+              >
+                Back
+              </Button>
             </div>
           </div>
           <div className="hidden bg-muted lg:flex relative  justify-center items-center">
@@ -195,20 +178,22 @@ const Step3 = ({ setLoadData, loadData, images }: Step1Props) => {
       ) : (
         <div className=" flex justify-evenly w-full h-screen flex-col items-center  ">
           <div className="flex flex-row w-full  justify-evenly items-center  ">
-            {loadData.images.map((item:string, index) => {
-            return <div
-                className=" w-[350px] h-[350px] bg-[#cdcccc29] z-10 "
-                key={index}
-              >
-                <Image
-                  src={item}
-                  alt="Image"
-                  width="1920"
-                  height="1080"
-                  className="h-full w-full object-cover rounded-xl  "
-                />
-              </div>
-})}
+            {loadData.images.map((item: string, index: number) => {
+              return (
+                <div
+                  className=" w-[350px] h-[350px] bg-[#cdcccc29] z-10 "
+                  key={index}
+                >
+                  <Image
+                    src={item}
+                    alt="Image"
+                    width="1920"
+                    height="1080"
+                    className="h-full w-full object-cover rounded-xl  "
+                  />
+                </div>
+              );
+            })}
             {/* {images.map((item:string, index) => {
             console.log(item)
             return <div

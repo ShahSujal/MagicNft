@@ -1,12 +1,14 @@
+import { NftType, orderType } from "@prisma/client";
+
 export enum OrderType {
     PUBLIC = "PUBLIC",
     PRIVATE = "PRIVATE"
   }
   
-  export enum NftType {
-    PLATFORM_GENERATED = "PLATFORM_GENERATED",
-    AI_GENERATED = "AI_GENERATED"
-  }
+  // export enum NftType {
+  //   PLATFORM_GENERATED = "PLATFORM_GENERATED",
+  //   AI_GENERATED = "AI_GENERATED"
+  // }
   
   enum Status {
     ACTIVE = "ACTIVE",
@@ -68,3 +70,43 @@ export enum OrderType {
     updatedAt: Date;
     user: User;
   };
+  // export enum creationType {
+  //   AI_NFT = "Ai NFT",
+  //   PLATFORM_NFT = "Platform NFT",
+  // }
+  // export enum orderType {
+  //   PRIVATE,
+  //   PUBLIC,
+  // }
+
+  export interface TLoadDataType {
+    step: number;
+    type: NftType; // Adjust the type if `creationType` is not a string
+    title: string;
+    imageFile: File | undefined;
+    description: string;
+    shortDescription: string;
+    image: string;
+    PriceInEth: number;
+    orderType: orderType; 
+    category: string[];
+    isBid: boolean;
+    BidEndTime: string; 
+    rewardEndDate: string; 
+    rewardPoints: number;
+    images: string[];
+    address: string;
+    tokenId?: string; 
+    chainId?: number;
+  }
+
+export  enum EStatus {
+    SUCCESS = "SUCCESS",
+    FAILED = "FAILED",
+    Reverted = "REVERTED"
+} 
+export type TApiResponse = {
+    success:EStatus;
+    title:string;
+    description:string;
+}

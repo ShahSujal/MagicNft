@@ -1,52 +1,24 @@
 import Image from "next/image";
-import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { NftType } from "@prisma/client";
-enum creationType {
-  AI_NFT = "AI_NFT",
-  BIDDING_NFT = "BIDDING_NFT",
-  PLATFORM_NFT = "PLATFORM_NFT",
-}
-enum orderType {
-  PRIVATE,
-  PUBLIC,
-}
-interface LoadData {
-  step: number;
-  type: NftType; // Adjust the type if `creationType` is not a string
-  title: string;
-  description: string;
-  shortDescription: string;
-  image: string;
-  PriceInEth: number;
-  orderType: orderType; // Adjust the type if `orderType` is not a string
-  category: string[];
-  isBid: boolean;
-  BidEndTime: string; // Adjust the type if it's a Date or other type
-  rewardEndDate: string; // Adjust the type if it's a Date or other type
-  rewardPoints: number;
-  images: string[];
-}
+import { TLoadDataType } from "@/types/common";
+
 interface Step1Props {
-  setLoadData: React.Dispatch<React.SetStateAction<LoadData>>;
-  loadData: LoadData;
+  setLoadData: React.Dispatch<React.SetStateAction<TLoadDataType>>;
+  loadData: TLoadDataType;
 }
 export function Step1({ setLoadData, loadData }: Step1Props) {
   const nftData = [
     {
       src: "/images/ai-tech.jpg",
       title: NftType.Ai_generated,
-      desc: "Create NFTs for brand promotion and reward users who follow your campaign.",
+      desc: "AI-generated NFT",
     },
     {
-      src: "/images/bidding.jpg",
+      src: "/images/platform-nft.jpg",
       title: NftType.Platform_generated,
-      desc: "Engage users with bidding NFTs and reward them for participating in your campaign.",
+      desc: "Platform Custom NFT",
     },
   ];
 
@@ -55,9 +27,9 @@ export function Step1({ setLoadData, loadData }: Step1Props) {
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold text-gray-100">Create Nft&apos;s</h1>
-            <p className="text-balance text-muted-foreground">
-              Choose the type of NFT you want to create
+            <h1 className="text-3xl font-bold font-paps text-gray-100">Create Your NFT</h1>
+            <p className="text-lg font-fragment text-muted-foreground">
+              Select the type of NFT you want to create for your marketplace
             </p>
           </div>
           <div className="grid gap-4">
@@ -76,16 +48,13 @@ export function Step1({ setLoadData, loadData }: Step1Props) {
                   width={500}
                   height={500}
                   className={cn(
-                    "w-full h-full object-cover transition rounded-2xl absolute left-0 top-0 opacity-50",
+                    "w-full h-full object-cover transition rounded-2xl absolute left-0 top-0 blur-xs grayscale opacity-20",
                     loadData.type === nft.title && "opacity-70"
                   )}
                 />
-                <h1 className="text-[40px] font-semibold z-10 text-gray-600">
-                  {nft.title}
-                </h1>
-                <h3 className="text-[10px] z-10 text-gray-900 text-center">
+                <h1 className="text-[32px] font-bold font-fragment z-10 text-white" style={{ textShadow: "8px 8px 16px rgba(255,255,255,1.0)" }}>
                   {nft.desc}
-                </h3>
+                </h1>
               </div>
             ))}
             <Button

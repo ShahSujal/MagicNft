@@ -35,11 +35,10 @@ enum rewardStatus {
 }
 
 model User {
-  id            String         @id @default(cuid())
+  walletAddress String  @unique
   email         String?
   name          String?
-  points        Int            @default(0)
-  walletAddress String         @unique
+  points        Int            @default(0)       
   rewards       Particpated[]
   nfts          Nfts[]
   views         Views[]

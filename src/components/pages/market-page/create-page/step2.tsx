@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
-import { creationType, LoadDataType } from "./page";
+
 import {
   Select,
   SelectContent,
@@ -19,11 +19,12 @@ import {
 } from "@/components/ui/select";
 import { NftType } from "@prisma/client";
 import { toast } from "@/components/ui/use-toast";
+import { TLoadDataType } from "@/types/common";
 
 interface Step1Props {
-  setLoadData: React.Dispatch<React.SetStateAction<LoadDataType>>;
+  setLoadData: React.Dispatch<React.SetStateAction<TLoadDataType>>;
   setImage: React.Dispatch<React.SetStateAction<string[]>>;
-  loadData: LoadDataType;
+  loadData: TLoadDataType;
 }
 interface ImageResponse {
   success: boolean;
@@ -73,17 +74,16 @@ export function Step2({ setLoadData, loadData,setImage }: Step1Props) {
               {loadData.type} details
             </h1>
             <p className="text-balance text-muted-foreground">
-              Enter your email below to login to your account
+              Fill in the details of your NFT
             </p>
           </div>
           {loadData.type === NftType.Platform_generated ? (
-            <div className="grid gap-4">
+            <div className="grid gap-4 text-black">
               <div className="grid gap-2">
                 <Label htmlFor="title">Title</Label>
                 <Input
                   id="title"
                   type="text"
-                  className="bg-[#ffffff62]"
                   placeholder="AI NFT"
                   required
                   onChange={(e) => {
@@ -94,7 +94,6 @@ export function Step2({ setLoadData, loadData,setImage }: Step1Props) {
               <div className="grid gap-2">
                 <Label>description</Label>
                 <Textarea
-                  className="bg-[#ffffff62]"
                   onChange={(e) => {
                     setLoadData({ ...loadData, description: e.target.value });
                   }}
@@ -104,7 +103,6 @@ export function Step2({ setLoadData, loadData,setImage }: Step1Props) {
               <div className="grid gap-2">
                 <Label>short description (optional)</Label>
                 <Textarea
-                  className="bg-[#ffffff62]"
                   onChange={(e) => {
                     setLoadData({
                       ...loadData,
@@ -115,7 +113,7 @@ export function Step2({ setLoadData, loadData,setImage }: Step1Props) {
               </div>
               <div className="grid grid-cols-2 gap-4"></div>
               <Button
-                variant="outline"
+              variant={"default"}
                 className="w-full"
                 onClick={() => {
                   setLoadData({ ...loadData, step: 2 });
@@ -125,6 +123,7 @@ export function Step2({ setLoadData, loadData,setImage }: Step1Props) {
               </Button>
               <Button
                 type="submit"
+                variant={"secondary"}
                 className="w-full"
                 onClick={() => {
                   setLoadData({ ...loadData, step: 0 });
@@ -140,7 +139,7 @@ export function Step2({ setLoadData, loadData,setImage }: Step1Props) {
                 <Input
                   id="title"
                   type="text"
-                   className="bg-[#ffffff62]"
+
                   placeholder="Sunny day"
                   required
                 />
@@ -148,7 +147,6 @@ export function Step2({ setLoadData, loadData,setImage }: Step1Props) {
               <div className="grid gap-2">
                 <Label>Prompt</Label>
                 <Textarea 
-                  className="bg-[#ffffff62]"
                   placeholder="Prompt for AI"
                 onChange={(e) => {
                     setLoadData({ ...loadData, description: e.target.value });
@@ -156,7 +154,7 @@ export function Step2({ setLoadData, loadData,setImage }: Step1Props) {
                 />
               </div>
               <Button
-                variant="outline"
+                variant="default"
                 className="w-full"
                 onClick={() => {
                   generatedImage()
@@ -167,6 +165,7 @@ export function Step2({ setLoadData, loadData,setImage }: Step1Props) {
               <Button
                 type="submit"
                 className="w-full"
+                variant={"secondary"}
                 onClick={() => {
                   setLoadData({ ...loadData, step: 0 });
                 }}
