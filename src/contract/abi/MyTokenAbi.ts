@@ -1,4 +1,4 @@
-export const TokenAbi = [
+export const myTokenAbi = [
 	{
 		"inputs": [
 			{
