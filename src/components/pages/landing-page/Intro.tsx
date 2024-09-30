@@ -2,6 +2,7 @@ import React, { useRef, RefObject } from "react";
 import Image from "next/image";
 import Background from "../../../../public/video/cloth.gif";
 import { useScroll, useTransform, motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Intro() {
   const container: RefObject<HTMLDivElement> = useRef(null);
@@ -28,10 +29,12 @@ export default function Intro() {
           {" "}
           Magic Nft{" "}
         </h1>
-        <button className=" bg-[#ffffff2b] backdrop-blur-xl px-10 py-3 rounded-full text-black font-bold uppercase border shadow-sm shadow-black">
+     <Link href="/marketplace">
+     <button className=" bg-[#ffffff2b] backdrop-blur-xl px-10 py-3 rounded-full text-black font-bold uppercase border shadow-sm shadow-black">
           {" "}
           Explore{" "}
         </button>
+     </Link>
       </motion.div>
     </div>
   );
